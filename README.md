@@ -1,36 +1,27 @@
-Простой To-Do List на чистом **HTML / CSS / JavaScript**.  
-Можно добавлять задачи, отмечать выполненные и удалять их.  
-Данные сохраняются в **localStorage**, так что после перезагрузки страницы всё остаётся.
+<img width="1324" height="668" alt="web" src="https://github.com/user-attachments/assets/47267f2d-184e-4fd6-a822-543b134ddcb8" />
+
+
+
+A simple To-Do List built with **HTML / CSS / JavaScript**.  
+You can add tasks, mark them as completed, and delete them.  
+Data is saved in **localStorage**, so everything stays after the page reloads.
 
 ---
 
-## 🚀 Функционал
+## 🚀 Features
 
-- ➕ Добавление задач  
-- ✅ Отметка выполненных задач  
-- ❌ Удаление задач  
-- 💾 Сохранение задач в localStorage  
-- 🔒 Ограничение: максимум **10 задач**  
+- ➕ Add tasks  
+- ✅ Mark tasks as completed  
+- ❌ Delete tasks  
+- 💾 Save tasks in localStorage  
+- 🔒 Limit: maximum **10 tasks**  
 
 ---
 
-## 🛠️ Используемые технологии
+## 🛠️ Technologies Used
 
 - HTML5  
 - CSS3  
 - JavaScript (Vanilla JS)  
-- localStorage  
+- localStorage
 
----
-
-## 📂 Структура проекта
-
-to-do-list/
-├── index.html
-├── style.css
-├── script.js
-├── images/
-│ ├── checked.png
-│ ├── unchecked.png
-│ └── icon.png
-└── README.md
