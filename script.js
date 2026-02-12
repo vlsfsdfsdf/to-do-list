@@ -1,10 +1,15 @@
-const inputBox = document.getElementById("input-box");
-const listContainer = document.getElementById("list-container");
+const dailyInputBox = document.getElementById("input-box");
+const dailyListContainer = document.getElementById("list-container");
 
-function addTask() {
-  const tasksCount = listContainer.querySelectorAll("li").length;
+const weeklyInputBox = document.getElementById("weekly-input-box");
+const weeklyListContainer = document.getElementById("weekly-list-container");
 
-  if (inputBox.value === "") {
+
+// Daily tasks area
+function addDailyTask() {
+  const tasksCount = dailyListContainer.querySelectorAll("li").length;
+
+  if (dailyInputBox.value === "") {
     alert("You don`t write nothing");
     return;
   }
@@ -15,20 +20,20 @@ function addTask() {
   }
 
   let li = document.createElement("li");
-  li.innerHTML = inputBox.value;
-  listContainer.appendChild(li);
+  li.innerHTML = dailyInputBox.value;
+  dailyListContainer.appendChild(li);
   let span = document.createElement("span");
   span.innerHTML = "\u00d7";
   li.appendChild(span);
 
-  inputBox.value = "";
+  dailyInputBox.value = "";
   saveData();
 }
-
-listContainer.addEventListener(
-    "click",
-    // e в function это какой-то ивент который передаеться в функцию как аргумент, браузер закидывает его сам
-  function (e) {         
+// marker task
+dailyListContainer.addEventListener(
+  "click",
+  // e в function это какой-то ивент который передаеться в функцию как аргумент, браузер закидывает его сам
+  function (e) {
     if (e.target.tagName === "LI") {
       e.target.classList.toggle("checked");
       saveData();
@@ -40,12 +45,81 @@ listContainer.addEventListener(
   false,
 );
 
+// Save data
 function saveData() {
-  localStorage.setItem("data", listContainer.innerHTML);
+  localStorage.setItem("data", dailyListContainer.innerHTML);
 }
 
 function getData() {
-  listContainer.innerHTML = localStorage.getItem("data");
+  dailyListContainer.innerHTML = localStorage.getItem("data");
+}
+// btn settings
+dailyInputBox.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    // срабатывает на Enter
+    addDailyTask();
+  }
+});
+
+
+
+
+// Weekly tasks area
+function addWeeklyTask() {
+  const tasksCount = weeklyListContainer.querySelectorAll("li").length;
+
+  if (weeklyInputBox.value === "") {
+    alert("You don`t write nothing");
+    return;
+  }
+
+  if (tasksCount >= 10) {
+    alert("Max tasks count is 10");
+    return;
+  }
+
+  let li = document.createElement("li");
+  li.innerHTML = weeklyInputBox.value;
+  weeklyListContainer.appendChild(li);
+  let span = document.createElement("span");
+  span.innerHTML = "\u00d7";
+  li.appendChild(span);
+
+  weeklyInputBox.value = "";
+saveWeeklyData();
 }
 
+// marker task
+weeklyListContainer.addEventListener(
+  "click",
+  // e в function это какой-то ивент который передаеться в функцию как аргумент, браузер закидывает его сам
+  function (e) {
+    if (e.target.tagName === "LI") {
+      e.target.classList.toggle("checked");
+      saveWeeklyData();
+    } else if (e.target.tagName === "SPAN") {
+      e.target.parentElement.remove();
+      saveWeeklyData();
+    }
+  },
+  false,
+);
+
+// Save data
+function saveWeeklyData() {
+  localStorage.setItem("weeklyData", weeklyListContainer.innerHTML);
+}
+
+function getWeeklyData() {
+  weeklyListContainer.innerHTML = localStorage.getItem("weeklyData");
+}
+// btn settings
+weeklyInputBox.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    // срабатывает на Enter
+    addWeeklyTask();
+  }
+});
+
 getData();
+getWeeklyData();
